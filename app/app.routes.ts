@@ -1,15 +1,15 @@
-import {Routes, RouterModule} from "@angular/router";
+import {Routes} from "@angular/router";
 import {NavComponent} from "./nav";
-import {EntertainmentComponent} from "./entertainment/entertainment.component";
-import {EntertainmentDataComponent} from "./entertainment/entertainment_data.component";
+import {ToutiaoComponent} from "./toutiao/toutiao.component";
+import {ToutiaoDataComponent} from "./toutiao/toutiao_data.component";
 import {FooterComponent} from "./footer/footer.component";
 import {ArticleComponent} from "./article/article.component";
-import {AllComponent} from "./all/all.component";
 import {JokeDataComponent} from "./joke/joke_data.component";
 import {JokeComponent} from "./joke/joke.component";
 import {CommentsComponent} from "./article/comments.component";
 import {ChannelComponent} from "./channel/channel.component";
 import {SearchComponent} from "./search/search.component";
+import {SearchDataComponent} from "./search/search_data.component";
 
 
 
@@ -21,16 +21,12 @@ export const rootRouterConfig: Routes=[
     component: NavComponent
   },
   {
-    path: 'toutiao/entertainment',
-    component: EntertainmentComponent
+    path: 'toutiao/:type',
+    component: ToutiaoComponent
   },
   {
-    path:'toutiao/all',
-    component: AllComponent
-  },
-  {
-    path: 'entertainment_data',
-    component: EntertainmentDataComponent
+    path: 'toutiao_data',
+    component: ToutiaoDataComponent
   },
   {
     path: 'footer',
@@ -59,5 +55,9 @@ export const rootRouterConfig: Routes=[
   {
     path: 'search',
     component:SearchComponent
+  },
+  {
+    path: 'search_data',
+    component:SearchDataComponent
   }
 ];

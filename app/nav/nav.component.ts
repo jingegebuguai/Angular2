@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ShareService} from "../share.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {subscribeOn} from "rxjs/operator/subscribeOn";
 
 @Component({
@@ -12,12 +12,12 @@ import {subscribeOn} from "rxjs/operator/subscribeOn";
     <div class="top">
         <div ><img style="margin-left:15px" src="../../../images/email.png"></div>
         <div ><span>今日头条</span><img style="margin-top:5px" src="../../../images/refresh.png" onmouseover="this.src='../../../images/refresh_1.png'" onmouseout="this.src='../../../images/refresh.png'"></div>
-        <div style="margin-right:15px"><img  src="../../../images/search.png" onmouseover="this.src='../../../images/search_1.png'" onmouseout="this.src='../../../images/search.png'"></div>
-  </div>
+        <div style="margin-right:15px"><a [routerLink]="['/search']"><img  src="../../../images/search.png" onmouseover="this.src='../../../images/search_1.png'" onmouseout="this.src='../../../images/search.png'"></a></div>
+</div>
     <div class="nav">
     <ul>
        <li *ngFor="let count of counts">
-       <a [routerLink]="['/toutiao/'+lists[count]]" [queryParams]="{channel:channel,lists:lists}">{{channel[count]}}</a>
+       <a (click)="choose()" [routerLink]="['/toutiao/',lists[count]]" [queryParams]="{channel:channel,lists:lists}">{{channel[count]}}</a>
        </li>
        <li><a [routerLink]="['/channel']" [queryParams]="{channel:channel,lists:lists}">+</a></li>
      </ul>
@@ -30,7 +30,7 @@ export class NavComponent implements OnInit, OnDestroy{
   lists:Array<string>;
   counts:Array<number>=[0,1,2,3,4,5,6,7];
   private sub:any;
-  constructor(private activatedRoute:ActivatedRoute){}
+  constructor(private activatedRoute:ActivatedRoute,private router:Router){}
   ngOnInit(){
 
     //获取导航名数据
@@ -55,5 +55,8 @@ export class NavComponent implements OnInit, OnDestroy{
     )}
   ngOnDestroy(){
     this.sub.unsubscribe();
+  }
+  choose(){
+    window.location.reload();
   }
 }

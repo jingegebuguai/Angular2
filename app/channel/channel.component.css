@@ -15,6 +15,9 @@ img{
   display: flex;flex-direction: row;flex-wrap: wrap;align-items: center;justify-content: flex-start;
 }
 .my_child{
-  width:80px;height:40px;background: bisque;font-size: 20px;line-height: 40px;padding-left:40px;border-radius: 20px;
+  width:70px;height:35px;background: skyblue;font-size: 20px;line-height: 35px;padding-left:30px;border-radius: 10px;
   margin-left: 10px;margin-top:20px;
+}
+.my_child:hover{
+  cursor: pointer;background: red;
 }

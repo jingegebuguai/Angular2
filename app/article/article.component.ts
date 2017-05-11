@@ -4,7 +4,7 @@ import {ToutiaoApiService} from "../toutiaoApi.service";
 import {ActivatedRoute} from "@angular/router";
 @Component({
   selector:'article',
-  template:`<div class="top"><div><a href="#" onclick="javascript:window.history.back();return false;"><img style="height: 40px;width: 40px" src="../../../images/back.png" onmouseover="this.src='../../../images/back_1.png'" onmouseout="this.src='../../../images/back.png'">
+  template:`<div class="top"><div><a (click)="back()"><img style="height: 40px;width: 40px" src="../../../images/back.png" onmouseover="this.src='../../../images/back_1.png'" onmouseout="this.src='../../../images/back.png'">
             </a></div><div class="avatar_source"><img style="width: 35px;height: 35px" src="{{avatar_url}}"><span style="margin-left: 10px">{{source}}</span></div><div><img [routerLink]="['/toutiao/all']" style="height:35px;width:35px;margin-right:10px" src="../../../images/wxb.png"></div></div><div style="height:80px"></div>
             <div class="article">
                 <div class="title">{{title}}</div>
@@ -33,6 +33,9 @@ export class ArticleComponent implements OnInit,OnDestroy{
   item_id:number;
   private sub_1:any;
   private sub_2:any;
+  back(){
+    window.history.back();
+  }
   constructor(private jsonp:Jsonp, private _activatedRoute:ActivatedRoute){}
   ngOnInit(){
     this.sub_1=this._activatedRoute.params.subscribe(params=>this.group_id=params['group_id']);
@@ -41,7 +44,7 @@ export class ArticleComponent implements OnInit,OnDestroy{
 
     //获取文章内容数据
     let Url_1 = 'http://m.toutiao.com/'+'i'+this.url+'/info/';
-    //let Url='http://m.toutiao.com/i6417278187348165121/info/';
+    //let Url_1='http://m.toutiao.com/i6418804836510859522' + '/info/'
     let params_1 = new URLSearchParams();
     params_1.set('action', 'opensearch');
     params_1.set('format', 'json');

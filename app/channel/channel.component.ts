@@ -20,6 +20,14 @@ import {ActivatedRoute} from "@angular/router";
               <div class="my_child" (click)="tech_1()" *ngIf="has_Tech()==true">{{tech}}</div>
               <div class="my_child" (click)="sports_1()" *ngIf="has_Sports()==true">{{tech}}</div>
               <div class="my_child" (click)="baby_1()" *ngIf="has_Baby()==true">{{baby}}</div>
+              <div class="my_child" (click)="finance_1()" *ngIf="has_Finance()==true">{{finance}}</div>
+              <div class="my_child" (click)="travel_1()" *ngIf="has_Travel()==true">{{travel}}</div>
+              <div class="my_child" (click)="fashion_1()" *ngIf="has_Fashion()==true">{{fashion}}</div>
+              <div class="my_child" (click)="regimen_1()" *ngIf="has_Regimen()==true">{{regimen}}</div>
+              <div class="my_child" (click)="history_1()" *ngIf="has_History()==true">{{_history}}</div>
+              <div class="my_child" (click)="essay_1()" *ngIf="has_Essay()==true">{{essay}}</div>
+              <div class="my_child" (click)="story_1()" *ngIf="has_Story()==true">{{story}}</div>
+              <div class="my_child" (click)="food_1()" *ngIf="has_Food()==true">{{food}}</div>
                </div> 
                
                <div style="font-size: 18px; color:#b92c28;margin-top:20px">推荐频道</div>
@@ -36,6 +44,14 @@ import {ActivatedRoute} from "@angular/router";
                <div class="my_child" (click)="tech_2()" *ngIf="has_Tech()==false">{{tech}}</div>
                <div class="my_child" (click)="sports_2()" *ngIf="has_Sports()==false">{{sports}}</div>
                <div class="my_child" (click)="baby_2()" *ngIf="has_Baby()==false">{{baby}}</div>
+               <div class="my_child" (click)="finance_2()" *ngIf="has_Finance()==false">{{finance}}</div>
+               <div class="my_child" (click)="travel_2()" *ngIf="has_Travel()==false">{{travel}}</div>
+               <div class="my_child" (click)="fashion_2()" *ngIf="has_Fashion()==false">{{fashion}}</div>
+               <div class="my_child" (click)="regimen_2()" *ngIf="has_Regimen()==false">{{regimen}}</div>
+               <div class="my_child" (click)="essay_2()" *ngIf="has_Essay()==false">{{essay}}</div>
+               <div class="my_child" (click)="story_2()" *ngIf="has_Story()==false">{{story}}</div>
+               <div class="my_child" (click)="history_2()" *ngIf="has_History()==false">{{_history}}</div>
+               <div class="my_child" (click)="food_2()" *ngIf="has_Food()==false">{{food}}</div>
                </div></div>
                 </div>`,
   styleUrls: ['channel.component.css'],
@@ -58,6 +74,14 @@ export class ChannelComponent implements OnInit,OnDestroy{
   tech:string='科技';
   sports:string='运动';
   baby:string='育儿';
+  finance:string='财经';
+  fashion:string='时尚';
+  travel:string='旅游';
+  regimen:string='养生';
+  food:string='美食';
+  essay:string='美文';
+  _history:string='历史';
+  story:string='故事';
   //导航url名
   lists:Array<string>;
   private sub_1:any;
@@ -405,6 +429,222 @@ export class ChannelComponent implements OnInit,OnDestroy{
     this.items.splice(this.item,1);
     this.lists.splice(this.item,1);
   }
+
+  has_Finance(){
+    this.item=this.items.length;
+    for(this.item;this.item>0;this.item--) {
+      if (this.items[this.item-1] == '旅游') {
+        return true;
+      }
+    }
+    if(this.item==0) {
+      return false;
+    }
+  }
+  /**
+   * 点击触发财经事件
+   * @type {boolean}
+   */
+
+  finance_1(){
+    for(let i=0;i<this.items.length;i++){
+      if(this.items[i]=='财经'){
+        this.item=i;
+        break;
+      }
+    }
+    this.items.splice(this.item,1);
+    this.lists.splice(this.item,1);
+  }
+
+  has_Travel(){
+    this.item=this.items.length;
+    for(this.item;this.item>0;this.item--) {
+      if (this.items[this.item-1] == '旅游') {
+        return true;
+      }
+    }
+    if(this.item==0) {
+      return false;
+    }
+  }
+  /**
+   * 点击触发旅游事件
+   * @type {boolean}
+   */
+
+  travel_1(){
+    for(let i=0;i<this.items.length;i++){
+      if(this.items[i]=='旅游'){
+        this.item=i;
+        break;
+      }
+    }
+    this.items.splice(this.item,1);
+    this.lists.splice(this.item,1);
+  }
+
+  has_Fashion(){
+    this.item=this.items.length;
+    for(this.item;this.item>0;this.item--) {
+      if (this.items[this.item-1] == '时尚') {
+        return true;
+      }
+    }
+    if(this.item==0) {
+      return false;
+    }
+  }
+  /**
+   * 点击触发时尚事件
+   * @type {boolean}
+   */
+
+  fashion_1(){
+    for(let i=0;i<this.items.length;i++){
+      if(this.items[i]=='时尚'){
+        this.item=i;
+        break;
+      }
+    }
+    this.items.splice(this.item,1);
+    this.lists.splice(this.item,1);
+  }
+
+  has_Regimen(){
+    this.item=this.items.length;
+    for(this.item;this.item>0;this.item--) {
+      if (this.items[this.item-1] == '养生') {
+        return true;
+      }
+    }
+    if(this.item==0) {
+      return false;
+    }
+  }
+  /**
+   * 点击触发养生事件
+   * @type {boolean}
+   */
+
+  regimen_1(){
+    for(let i=0;i<this.items.length;i++){
+      if(this.items[i]=='养生'){
+        this.item=i;
+        break;
+      }
+    }
+    this.items.splice(this.item,1);
+    this.lists.splice(this.item,1);
+  }
+
+  has_History(){
+    this.item=this.items.length;
+    for(this.item;this.item>0;this.item--) {
+      if (this.items[this.item-1] == '历史') {
+        return true;
+      }
+    }
+    if(this.item==0) {
+      return false;
+    }
+  }
+  /**
+   * 点击触发历史事件
+   * @type {boolean}
+   */
+
+  history_1(){
+    for(let i=0;i<this.items.length;i++){
+      if(this.items[i]=='历史'){
+        this.item=i;
+        break;
+      }
+    }
+    this.items.splice(this.item,1);
+    this.lists.splice(this.item,1);
+  }
+
+  has_Essay(){
+    this.item=this.items.length;
+    for(this.item;this.item>0;this.item--) {
+      if (this.items[this.item-1] == '美文') {
+        return true;
+      }
+    }
+    if(this.item==0) {
+      return false;
+    }
+  }
+  /**
+   * 点击触发美文事件
+   * @type {boolean}
+   */
+
+  essay_1(){
+    for(let i=0;i<this.items.length;i++){
+      if(this.items[i]=='美文'){
+        this.item=i;
+        break;
+      }
+    }
+    this.items.splice(this.item,1);
+    this.lists.splice(this.item,1);
+  }
+
+  has_Story(){
+    this.item=this.items.length;
+    for(this.item;this.item>0;this.item--) {
+      if (this.items[this.item-1] == '故事') {
+        return true;
+      }
+    }
+    if(this.item==0) {
+      return false;
+    }
+  }
+  /**
+   * 点击触发故事事件
+   * @type {boolean}
+   */
+
+  story_1(){
+    for(let i=0;i<this.items.length;i++){
+      if(this.items[i]=='故事'){
+        this.item=i;
+        break;
+      }
+    }
+    this.items.splice(this.item,1);
+    this.lists.splice(this.item,1);
+  }
+
+  has_Food(){
+    this.item=this.items.length;
+    for(this.item;this.item>0;this.item--) {
+      if (this.items[this.item-1] == '美食') {
+        return true;
+      }
+    }
+    if(this.item==0) {
+      return false;
+    }
+  }
+  /**
+   * 点击触发热点事件
+   * @type {boolean}
+   */
+
+  food_1(){
+    for(let i=0;i<this.items.length;i++){
+      if(this.items[i]=='美食'){
+        this.item=i;
+        break;
+      }
+    }
+    this.items.splice(this.item,1);
+    this.lists.splice(this.item,1);
+  }
   /**
    * 点击触发添加推荐事件
    */
@@ -493,5 +733,37 @@ export class ChannelComponent implements OnInit,OnDestroy{
   baby_2(){
     this.items.push(this.baby);
     this.lists.push('baby');
+  }
+  finance_2(){
+    this.items.push(this.finance);
+    this.lists.push('finance');
+  }
+  travel_2(){
+    this.items.push(this.travel);
+    this.lists.push('travel');
+  }
+  fashion_2(){
+    this.items.push(this.fashion);
+    this.lists.push('fashion');
+  }
+  history_2(){
+    this.items.push(this._history);
+    this.lists.push('history');
+  }
+  regimen_2(){
+    this.items.push(this.regimen);
+    this.lists.push('regimen');
+  }
+  essay_2(){
+    this.items.push(this.essay);
+    this.lists.push('essay');
+  }
+  story_2(){
+    this.items.push(this.story);
+    this.lists.push('story');
+  }
+  food_2(){
+    this.items.push(this.food);
+    this.lists.push('food');
   }
 }

@@ -2,13 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
-  selector: 'entertainment',
+  selector: 'toutiao',
   template: `<nav></nav><div style="height:87px"></div>
-             <div *ngFor="let count of counts"><entertainment_data [count]="count"></entertainment_data></div>
+             <div *ngFor="let count of counts"><toutiao_data [count]="count"></toutiao_data></div>
+             <div style="height:65px"></div>
              <footer></footer>`,
-  styleUrls: ['entertainment.component.css']
+  styleUrls: ['toutiao.component.css']
 })
-export class EntertainmentComponent{
+export class ToutiaoComponent{
   constructor(){}
   private sub:any;
   type:string;
