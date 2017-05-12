@@ -64,7 +64,7 @@ import {ActivatedRoute} from "@angular/router";
   providers:[JsonpModule, ToutiaoApiService]
 })
 
-export class ToutiaoDataComponent implements OnInit{
+export class ToutiaoDataComponent implements OnInit,OnDestroy{
   @Input() count:any;
   comments:number;//评论
   title:string;//标题
@@ -82,7 +82,7 @@ export class ToutiaoDataComponent implements OnInit{
   image_length:number;
   length:string;//
   display_url:string;//显示评论有关信息
-  keywords:string;
+  item_id:string;
   private sub:any;//设置订阅变量
   constructor(private toutiaoApiservice:ToutiaoApiService,private _activatedRoute:ActivatedRoute){}
   ngOnInit() {
@@ -98,180 +98,145 @@ export class ToutiaoDataComponent implements OnInit{
     //获取娱乐新闻数据
     if(this.type=='entertainment') {
       this.toutiaoApiservice.searchEntertainment().map(res => {
-        if (res.json().data[4].article_genre == "gallery")
+        if (res.json().data[4].article_genre == 'gallery')
           return res.json().data[4];
-        else if (res.json().data[6].article_genre == "article")
+        else if (res.json().data[6].article_genre == 'article')
           return res.json().data[6];
       })
-        .subscribe(response => (console.log(response), this.title = response.title, this.comments = response.comments_count,
+        .subscribe(response => (console.log(response), this.article_genre=response.article_genre,this.title = response.title, this.comments = response.comments_count,
           this.source = response.source, this.article_genre = response.article_genre, this.image_list = response.image_list,
           this.datetime = response.datetime, this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,
           this.middle_image_1 = response.middle_image, this.middle_image_2 = response.middle_image.url, this.image_length = response.image_list.length,
-          this.display_url = response.display_url, this.keywords = response.keywords))
+          this.display_url = response.display_url, this.item_id = response.item_id ));
     }
 
     //获取推荐新闻数据
     if(this.type=='all') {
       this.toutiaoApiservice.searchAll().map(res => {
-        if (res.json().data[4].article_genre == "gallery")
-          return res.json().data[4];
-        else if (res.json().data[6].article_genre == "article")
-          return res.json().data[6];
-      })
-        .subscribe(response => (console.log(response), this.title = response.title, this.comments = response.comments_count,
+          if (res.json().data[4].article_genre == 'gallery')
+            return res.json().data[4];
+          else if (res.json().data[6].article_genre == 'article')
+            return res.json().data[6];
+        })
+        .subscribe(response => (console.log(response), this.article_genre=response.article_genre,this.title = response.title, this.comments = response.comments_count,
           this.source = response.source, this.article_genre = response.article_genre, this.image_list = response.image_list,
           this.datetime = response.datetime, this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,
           this.middle_image_1 = response.middle_image, this.middle_image_2 = response.middle_image.url, this.image_length = response.image_list.length,
-          this.display_url = response.display_url, this.keywords = response.keywords))
+          this.display_url = response.display_url,this.item_id=response.item_id ))
     }
 
     //获取推荐热点数据
     if(this.type=='hot') {
       this.toutiaoApiservice.searchHot().map(res => {
-        if (res.json().data[4].article_genre == "gallery")
-          return res.json().data[4];
-        else if (res.json().data[6].article_genre == "article")
-          return res.json().data[6];
-      })
-        .subscribe(response => (console.log(response), this.title = response.title, this.comments = response.comments_count,
+          if (res.json().data[4].article_genre == 'gallery')
+            return res.json().data[4];
+          else if (res.json().data[6].article_genre == 'article')
+            return res.json().data[6];
+        })
+        .subscribe(response => (console.log(response),this.article_genre=response.article_genre, this.title = response.title, this.comments = response.comments_count,
           this.source = response.source, this.article_genre = response.article_genre, this.image_list = response.image_list,
           this.datetime = response.datetime, this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,
           this.middle_image_1 = response.middle_image, this.middle_image_2 = response.middle_image.url, this.image_length = response.image_list.length,
-          this.display_url = response.display_url, this.keywords = response.keywords))
+          this.display_url = response.display_url,this.item_id=response.item_id ))
     }
 
     //获取国际新闻数据
     if(this.type=='world') {
-      this.toutiaoApiservice.searchWorld().map(res => {
-        if (res.json().data[4].article_genre == "gallery")
-          return res.json().data[4];
-        else if (res.json().data[6].article_genre == "article")
-          return res.json().data[6];
-      })
-        .subscribe(response => (console.log(response), this.title = response.title, this.comments = response.comments_count,
+      this.toutiaoApiservice.searchWorld().map(res => res.json().data[this.count])
+        .subscribe(response => (console.log(response),this.title = response.title, this.comments = response.comments_count,
           this.source = response.source, this.article_genre = response.article_genre, this.image_list = response.image_list,
-          this.datetime = response.datetime, this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,
+          this.datetime = response.datetime, /*this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,*/
           this.middle_image_1 = response.middle_image, this.middle_image_2 = response.middle_image.url, this.image_length = response.image_list.length,
-          this.display_url = response.display_url, this.keywords = response.keywords))
+          this.display_url = response.display_url,this.item_id=response.item_id ))
     }
 
     //获取育儿新闻数据
     if(this.type=='baby') {
-      this.toutiaoApiservice.searchBaby().map(res => {
-        if (res.json().data[4].article_genre == "gallery")
-          return res.json().data[4];
-        else if (res.json().data[6].article_genre == "article")
-          return res.json().data[6];
-      })
+      this.toutiaoApiservice.searchBaby().map(res => res.json().data[this.count])
         .subscribe(response => (console.log(response), this.title = response.title, this.comments = response.comments_count,
           this.source = response.source, this.article_genre = response.article_genre, this.image_list = response.image_list,
-          this.datetime = response.datetime, this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,
+          this.datetime = response.datetime, /*this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,*/
           this.middle_image_1 = response.middle_image, this.middle_image_2 = response.middle_image.url, this.image_length = response.image_list.length,
-          this.display_url = response.display_url, this.keywords = response.keywords))
+          this.display_url = response.display_url,this.item_id=response.item_id ))
     }
 
     //获取科技新闻数据
     if(this.type=='tech') {
-      this.toutiaoApiservice.searchTech().map(res => {
-        if (res.json().data[4].article_genre == "gallery")
-          return res.json().data[4];
-        else if (res.json().data[6].article_genre == "article")
-          return res.json().data[6];
-      })
-        .subscribe(response => (console.log(response), this.title = response.title, this.comments = response.comments_count,
+      this.toutiaoApiservice.searchTech().map(res => res.json().data[this.count])
+        .subscribe(response => (console.log(response),this.title = response.title, this.comments = response.comments_count,
           this.source = response.source, this.article_genre = response.article_genre, this.image_list = response.image_list,
-          this.datetime = response.datetime, this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,
+          this.datetime = response.datetime, /*this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,*/
           this.middle_image_1 = response.middle_image, this.middle_image_2 = response.middle_image.url, this.image_length = response.image_list.length,
-          this.display_url = response.display_url, this.keywords = response.keywords))
+          this.display_url = response.display_url,this.item_id=response.item_id ))
     }
     //获取时尚新闻数据
     if(this.type=='fashion') {
-      this.toutiaoApiservice.searchFashion().map(res => {
-        if (res.json().data[4].article_genre == "gallery")
-          return res.json().data[4];
-        else if (res.json().data[6].article_genre == "article")
-          return res.json().data[6];
-      })
-        .subscribe(response => (console.log(response), this.title = response.title, this.comments = response.comments_count,
+      this.toutiaoApiservice.searchFashion().map(res => res.json().data[this.count])
+        .subscribe(response => (console.log(response),this.title = response.title, this.comments = response.comments_count,
           this.source = response.source, this.article_genre = response.article_genre, this.image_list = response.image_list,
-          this.datetime = response.datetime, this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,
+          this.datetime = response.datetime, /*this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,*/
           this.middle_image_1 = response.middle_image, this.middle_image_2 = response.middle_image.url, this.image_length = response.image_list.length,
-          this.display_url = response.display_url, this.keywords = response.keywords))
+          this.display_url = response.display_url,this.item_id=response.item_id ))
     }
 
     //获取美女新闻数据
     if(this.type=='beauty') {
-      this.toutiaoApiservice.searchBeauty().map(res => {
-        if (res.json().data[4].article_genre == "gallery")
-          return res.json().data[4];
-        else if (res.json().data[6].article_genre == "article")
-          return res.json().data[6];
-      })
-        .subscribe(response => (console.log(response), this.title = response.title, this.comments = response.comments_count,
+      this.toutiaoApiservice.searchBeauty().map(res => res.json().data[this.count])
+        .subscribe(response => (console.log(response),this.title = response.title, this.comments = response.comments_count,
           this.source = response.source, this.article_genre = response.article_genre, this.image_list = response.image_list,
-          this.datetime = response.datetime, this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,
+          this.datetime = response.datetime, /*this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,*/
           this.middle_image_1 = response.middle_image, this.middle_image_2 = response.middle_image.url, this.image_length = response.image_list.length,
-          this.display_url = response.display_url, this.keywords = response.keywords))
+          this.display_url = response.display_url,this.item_id=response.item_id ))
     }
 
     //获取体育新闻数据
     if(this.type=='sports') {
-      this.toutiaoApiservice.searchSports().map(res => {
-        if (res.json().data[4].article_genre == "gallery")
-          return res.json().data[4];
-        else if (res.json().data[6].article_genre == "article")
-          return res.json().data[6];
-      })
-        .subscribe(response => (console.log(response), this.title = response.title, this.comments = response.comments_count,
+      this.toutiaoApiservice.searchSports().map(res => res.json().data[this.count])
+        .subscribe(response => (console.log(response),this.title = response.title, this.comments = response.comments_count,
           this.source = response.source, this.article_genre = response.article_genre, this.image_list = response.image_list,
-          this.datetime = response.datetime, this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,
+          this.datetime = response.datetime, /*this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,*/
           this.middle_image_1 = response.middle_image, this.middle_image_2 = response.middle_image.url, this.image_length = response.image_list.length,
-          this.display_url = response.display_url, this.keywords = response.keywords))
+          this.display_url = response.display_url,this.item_id=response.item_id ))
     }
 
-    //获取旅游新闻数据
-    if(this.type=='travel') {
-      this.toutiaoApiservice.searchTravel().map(res => {
-        if (res.json().data[4].article_genre == "gallery")
-          return res.json().data[4];
-        else if (res.json().data[6].article_genre == "article")
-          return res.json().data[6];
-      })
+    //获取美食新闻数据
+    if(this.type=='food') {
+      this.toutiaoApiservice.searchFood().map(res=>res.json().data[this.count])
         .subscribe(response => (console.log(response), this.title = response.title, this.comments = response.comments_count,
           this.source = response.source, this.article_genre = response.article_genre, this.image_list = response.image_list,
-          this.datetime = response.datetime, this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,
+          this.datetime = response.datetime, /*this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,*/
           this.middle_image_1 = response.middle_image, this.middle_image_2 = response.middle_image.url, this.image_length = response.image_list.length,
-          this.display_url = response.display_url, this.keywords = response.keywords))
+          this.display_url = response.display_url,this.item_id=response.item_id ))
     }
 
     //获取财经新闻数据
     if(this.type=='finance') {
-      this.toutiaoApiservice.searchFinance().map(res => {
-        if (res.json().data[4].article_genre == "gallery")
-          return res.json().data[4];
-        else if (res.json().data[6].article_genre == "article")
-          return res.json().data[6];
-      })
+      this.toutiaoApiservice.searchFinance().map(res=>res.json().data[this.count])
         .subscribe(response => (console.log(response), this.title = response.title, this.comments = response.comments_count,
           this.source = response.source, this.article_genre = response.article_genre, this.image_list = response.image_list,
-          this.datetime = response.datetime, this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,
+          this.datetime = response.datetime, /*this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,*/
           this.middle_image_1 = response.middle_image, this.middle_image_2 = response.middle_image.url, this.image_length = response.image_list.length,
-          this.display_url = response.display_url, this.keywords = response.keywords))
+          this.display_url = response.display_url,this.item_id=response.item_id ))
     }
 
     //获取汽车新闻数据
     if(this.type=='car') {
-      this.toutiaoApiservice.searchCar().map(res => {
-        if (res.json().data[4].article_genre == "gallery")
-          return res.json().data[4];
-        else if (res.json().data[6].article_genre == "article")
-          return res.json().data[6];
-      })
+      this.toutiaoApiservice.searchCar().map(res =>res.json().data[this.count])
+        .subscribe(response => (console.log(response),this.title = response.title, this.comments = response.comments_count,
+          this.source = response.source, this.article_genre = response.article_genre, this.image_list = response.image_list,
+          this.datetime = response.datetime, /*this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,*/
+          this.middle_image_1 = response.middle_image, this.middle_image_2 = response.middle_image.url, this.image_length = response.image_list.length,
+          this.display_url = response.display_url,this.item_id=response.item_id ))
+    }
+
+    //获取本地新闻数据
+    if(this.type=='local') {
+      this.toutiaoApiservice.searchLocal().map(res =>res.json().data[this.count])
         .subscribe(response => (console.log(response), this.title = response.title, this.comments = response.comments_count,
           this.source = response.source, this.article_genre = response.article_genre, this.image_list = response.image_list,
-          this.datetime = response.datetime, this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,
+          this.datetime = response.datetime, /*this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,*/
           this.middle_image_1 = response.middle_image, this.middle_image_2 = response.middle_image.url, this.image_length = response.image_list.length,
-          this.display_url = response.display_url, this.keywords = response.keywords))
+          this.display_url = response.display_url,this.item_id=response.item_id ))
     }
   }
 
@@ -279,23 +244,31 @@ export class ToutiaoDataComponent implements OnInit{
    * 获取url的id号
    * @returns {string}
    */
+
   urlSlice(){
-      if(this.seo_url.length==22) {
+    if(this.article_genre!=null) {
+      if (this.seo_url.length == 22) {
         return this.seo_url.slice(2, this.seo_url.length - 1);
       }
-      else if(this.item_seo_url.length==26){
-        return this.item_seo_url.slice(6,this.item_seo_url.length-1)
+      else if (this.item_seo_url.length == 26) {
+        return this.item_seo_url.slice(6, this.item_seo_url.length - 1)
       }
-      else if(this.item_seo_url.length==27){
-        return this.item_seo_url.slice(7,this.item_seo_url.length-1)
+      else if (this.item_seo_url.length == 27) {
+        return this.item_seo_url.slice(7, this.item_seo_url.length - 1)
       }
-      else if(this.item_seo_url.length>27){
-        return this.item_seo_url.slice(6,25)
-      }
+    }else
+      return this.item_id;
   }
 
   display_urlSlice(){
     return this.display_url.slice(25,44);
   }
-
+/*
+  display_urlSlice(){
+    return this.display_url.slice(this.display_url.length-20,this.display_url.length-1);
+  }
+  */
+  ngOnDestroy(){
+    this.sub.unsubscribe();
+  }
 }

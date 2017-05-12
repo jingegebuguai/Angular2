@@ -17,7 +17,8 @@ import {subscribeOn} from "rxjs/operator/subscribeOn";
     <div class="nav">
     <ul>
        <li *ngFor="let count of counts">
-       <a (click)="choose()" [routerLink]="['/toutiao/',lists[count]]" [queryParams]="{channel:channel,lists:lists}">{{channel[count]}}</a>
+       <a *ngIf="lists[count]=='joke'" (click)="choose()" [routerLink]="['/joke']" [queryParams]="{channel:channel,lists:lists}">{{channel[count]}}</a>
+       <a *ngIf="lists[count]!='joke'" (click)="choose()" [routerLink]="['/toutiao/',lists[count]]" [queryParams]="{channel:channel,lists:lists}">{{channel[count]}}</a>
        </li>
        <li><a [routerLink]="['/channel']" [queryParams]="{channel:channel,lists:lists}">+</a></li>
      </ul>

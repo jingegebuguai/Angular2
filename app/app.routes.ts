@@ -41,7 +41,7 @@ export const rootRouterConfig: Routes=[
     component:JokeDataComponent
   },
   {
-    path: 'toutiao/joke',
+    path: 'joke',
     component:JokeComponent
   },
   {

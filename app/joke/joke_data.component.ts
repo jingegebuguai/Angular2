@@ -1,12 +1,12 @@
 import {Component, OnInit, Injectable, Input, OnDestroy} from '@angular/core';
-import {JsonpModule} from "@angular/http";
+import {JsonpModule, Jsonp, URLSearchParams} from "@angular/http";
 import 'rxjs/add/operator/map';
 import {ToutiaoApiService} from "app/toutiaoApi.service";
 import {ActivatedRoute} from "@angular/router";
 @Component({
   selector:'joke_data',
   styleUrls:['joke_data.component.css'],
-  template:`<div [routerLink]="['/joke_article',id]" class="joke">
+  template:`<div class="joke">
             <div class="text">{{text}}</div>
             <div class="bottom">
             <div><img (click)="good()" src="{{good_src}}"><span>{{digg_count}}</span></div>
@@ -25,16 +25,24 @@ export class JokeDataComponent implements OnInit{
   id:number;
   bury_count:number;
   digg_count:number;
-  constructor(private toutiaoApiservice:ToutiaoApiService,private _activatedRoute:ActivatedRoute){}
+  type:string;
+  constructor(private jsonp:Jsonp,private toutiaoApiservice:ToutiaoApiService,private _activatedRoute:ActivatedRoute){}
   ngOnInit() {
+    let Url = 'http://www.toutiao.com/api/article/feed/?category=essay_joke&as=A115C8457F69B85&cp=585F294B8845EE1';
+    let params = new URLSearchParams();
+    params.set('action', 'opensearch');
+    params.set('format', 'json');
+    params.set('callback', 'JSONP_CALLBACK');
+    return this.jsonp
+      .get(Url, {search: params})
+       .map(res => {
+          if (res.json().data[this.count].group.category_name == '内涵段子')
+            return res.json().data[this.count].group
+        })
+          .subscribe(response => (console.log(response), this.category = response.category, this.text = response.text,
+            this.id = response.id, this.bury_count = response.bury_count, this.digg_count = response.digg_count,
+            this.comment_count = response.comment_count))
 
-    this.toutiaoApiservice.searchJoke().map(res =>{
-      if(res.json().data[this.count].group.category_name=='内涵段子')
-        return res.json().data[this.count].group
-    })
-      .subscribe(response => (console.log(response),this.category=response.category,this.text=response.text,
-        this.id=response.id, this.bury_count=response.bury_count,this.digg_count=response.digg_count,
-        this.comment_count=response.comment_count))
   }
   //取消订阅，避免内存泄漏
   /*ngOnDestroy(){

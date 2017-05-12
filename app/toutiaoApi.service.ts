@@ -7,7 +7,7 @@ export class ToutiaoApiService {
   }
   //获取推荐新闻数据
   searchAll() {
-    let Url = 'http://toutiao.com/api/article/recent/?source=2&category=__all__&as=A105177907376A5&cp=5797C7865AD54E1&count=6&offset=0&_=1481986412';
+    let Url='http://toutiao.com/api/article/recent/?source=2&category=__all__&as=A105177907376A5&cp=5797C7865AD54E1&count=20&offset=0&_=1481986412';
     let params = new URLSearchParams();
     params.set('action', 'opensearch');
     params.set('format', 'json');
@@ -17,7 +17,7 @@ export class ToutiaoApiService {
   }
   //获取最新娱乐新闻数据
   searchEntertainment() {
-    let Url = 'http://toutiao.com/api/article/recent/?source=2&category=news_entertainment&as=A105177907376A5&cp=5797C7865AD54E1&count=20&offset=0&_=1481986412';
+    let Url='http://toutiao.com/api/article/recent/?source=2&category=news_entertainment&as=A105177907376A5&cp=5797C7865AD54E1&count=20&offset=0&_=1481986412';
     let params = new URLSearchParams();
     params.set('action', 'opensearch');
     params.set('format', 'json');
@@ -28,7 +28,7 @@ export class ToutiaoApiService {
 
   //获取最新热点新闻数据
   searchHot() {
-    let Url = 'http://toutiao.com/api/article/recent/?source=2&category=news_hot&as=A105177907376A5&cp=5797C7865AD54E1&count=6&offset=0&_=1481986412';
+    let Url='http://toutiao.com/api/article/recent/?source=2&category=news_hot&as=A105177907376A5&cp=5797C7865AD54E1&count=20&offset=0&_=1481986412';
     let params = new URLSearchParams();
     params.set('action', 'opensearch');
     params.set('format', 'json');
@@ -39,7 +39,7 @@ export class ToutiaoApiService {
 
   //获取最新本地新闻数据
   searchLocal() {
-    let Url = 'http://toutiao.com/api/article/recent/?source=2&category=news_society&as=A105177907376A5&cp=5797C7865AD54E1&count=6&offset=0&_=1481986412';
+    let Url='http://www.toutiao.com/search_content/?offset=0&format=json&keyword=南京&autoload=true&count=20&cur_tab=1';
     let params = new URLSearchParams();
     params.set('action', 'opensearch');
     params.set('format', 'json');
@@ -50,7 +50,7 @@ export class ToutiaoApiService {
 
   //获取最新国际新闻数据
   searchWorld() {
-    let Url = 'http://toutiao.com/api/article/recent/?source=2&category=news_world&as=A105177907376A5&cp=5797C7865AD54E1&count=6&offset=0&_=1481986412';
+    let Url='http://www.toutiao.com/search_content/?offset=0&format=json&keyword=国际&autoload=true&count=20&cur_tab=1';
     let params = new URLSearchParams();
     params.set('action', 'opensearch');
     params.set('format', 'json');
@@ -61,7 +61,7 @@ export class ToutiaoApiService {
 
   //获取美女Api接口
   searchBeauty(){
-    let Url = 'http://m.toutiao.com/list/?tag=__all__&ac=wap&count=20&format=json_raw&as=A17538D54D106FF&cp=585DF0A65F0F1E1&min_behot_time=1482491618';
+    let Url='http://www.toutiao.com/search_content/?offset=0&format=json&keyword=美女&autoload=true&count=20&cur_tab=1';
     let params = new URLSearchParams();
     params.set('action', 'opensearch');
     params.set('format', 'json');
@@ -72,7 +72,7 @@ export class ToutiaoApiService {
 
   //获取财经Api接口
   searchFinance(){
-    let Url = 'http://toutiao.com/api/article/recent/?source=2&category=news_finance&as=A105177907376A5&cp=5797C7865AD54E1&count=6&offset=0&_=1481986412';
+    let Url='http://www.toutiao.com/search_content/?offset=0&format=json&keyword=财经&autoload=true&count=20&cur_tab=1';
     let params = new URLSearchParams();
     params.set('action', 'opensearch');
     params.set('format', 'json');
@@ -83,7 +83,7 @@ export class ToutiaoApiService {
 
   //获取汽车Api接口
   searchCar(){
-    let Url = 'http://toutiao.com/api/article/recent/?source=2&category=news_car&as=A105177907376A5&cp=5797C7865AD54E1&count=6&offset=0&_=1481986412';
+    let Url='http://www.toutiao.com/search_content/?offset=0&format=json&keyword=汽车&autoload=true&count=20&cur_tab=1';
     let params = new URLSearchParams();
     params.set('action', 'opensearch');
     params.set('format', 'json');
@@ -94,7 +94,7 @@ export class ToutiaoApiService {
 
   //获取体育Api接口
   searchSports(){
-    let Url = 'http://toutiao.com/api/article/recent/?source=2&category=news_sports&as=A105177907376A5&cp=5797C7865AD54E1&count=6&offset=0&_=1481986412';
+    let Url='http://www.toutiao.com/search_content/?offset=0&format=json&keyword=体育&autoload=true&count=20&cur_tab=1';
     let params = new URLSearchParams();
     params.set('action', 'opensearch');
     params.set('format', 'json');
@@ -105,7 +105,7 @@ export class ToutiaoApiService {
 
   //获取军事Api接口
   searchMilitary(){
-    let Url = 'http://toutiao.com/api/article/recent/?source=2&category=news_military&as=A105177907376A5&cp=5797C7865AD54E1&count=6&offset=0&_=1481986412';
+    let Url='http://www.toutiao.com/search_content/?offset=0&format=json&keyword=军事&autoload=true&count=20&cur_tab=1';
     let params = new URLSearchParams();
     params.set('action', 'opensearch');
     params.set('format', 'json');
@@ -116,7 +116,7 @@ export class ToutiaoApiService {
 
   //获取科技Api接口
   searchTech(){
-    let Url = 'http://toutiao.com/api/article/recent/?source=2&category=news_tech&as=A105177907376A5&cp=5797C7865AD54E1&count=6&offset=0&_=1481986412';
+    let Url='http://www.toutiao.com/search_content/?offset=0&format=json&keyword=科技&autoload=true&count=20&cur_tab=1';
     let params = new URLSearchParams();
     params.set('action', 'opensearch');
     params.set('format', 'json');
@@ -127,7 +127,7 @@ export class ToutiaoApiService {
 
   //获取育儿Api接口
   searchBaby(){
-    let Url = 'http://toutiao.com/api/article/recent/?source=2&category=news_baby&as=A105177907376A5&cp=5797C7865AD54E1&count=6&offset=0&_=1481986412';
+    let Url='http://www.toutiao.com/search_content/?offset=0&format=json&keyword=育儿&autoload=true&count=20&cur_tab=1';
     let params = new URLSearchParams();
     params.set('action', 'opensearch');
     params.set('format', 'json');
@@ -138,7 +138,7 @@ export class ToutiaoApiService {
 
   //获取时尚Api接口
   searchFashion(){
-    let Url = 'http://toutiao.com/api/article/recent/?source=2&category=news_fashion&as=A105177907376A5&cp=5797C7865AD54E1&count=6&offset=0&_=1481986412';
+    let Url='http://www.toutiao.com/search_content/?offset=0&format=json&keyword=时尚&autoload=true&count=20&cur_tab=1';
     let params = new URLSearchParams();
     params.set('action', 'opensearch');
     params.set('format', 'json');
@@ -148,8 +148,8 @@ export class ToutiaoApiService {
   }
 
   ////获取旅游Api接口
-  searchTravel(){
-    let Url = 'http://toutiao.com/api/article/recent/?source=2&category=news_travel&as=A105177907376A5&cp=5797C7865AD54E1&count=6&offset=0&_=1481986412';
+  searchFood(){
+    let Url='http://www.toutiao.com/search_content/?offset=0&format=json&keyword=美食&autoload=true&count=20&cur_tab=1';
     let params = new URLSearchParams();
     params.set('action', 'opensearch');
     params.set('format', 'json');

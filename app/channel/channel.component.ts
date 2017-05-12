@@ -28,6 +28,7 @@ import {ActivatedRoute} from "@angular/router";
               <div class="my_child" (click)="essay_1()" *ngIf="has_Essay()==true">{{essay}}</div>
               <div class="my_child" (click)="story_1()" *ngIf="has_Story()==true">{{story}}</div>
               <div class="my_child" (click)="food_1()" *ngIf="has_Food()==true">{{food}}</div>
+              <div class="my_child" (click)="local_1()" *ngIf="has_Local()==true">{{local}}</div>
                </div> 
                
                <div style="font-size: 18px; color:#b92c28;margin-top:20px">推荐频道</div>
@@ -52,6 +53,7 @@ import {ActivatedRoute} from "@angular/router";
                <div class="my_child" (click)="story_2()" *ngIf="has_Story()==false">{{story}}</div>
                <div class="my_child" (click)="history_2()" *ngIf="has_History()==false">{{_history}}</div>
                <div class="my_child" (click)="food_2()" *ngIf="has_Food()==false">{{food}}</div>
+               <div class="my_child" (click)="local_2()" *ngIf="has_Local()==false">{{local}}</div>
                </div></div>
                 </div>`,
   styleUrls: ['channel.component.css'],
@@ -82,6 +84,7 @@ export class ChannelComponent implements OnInit,OnDestroy{
   essay:string='美文';
   _history:string='历史';
   story:string='故事';
+  local:string='本地';
   //导航url名
   lists:Array<string>;
   private sub_1:any;
@@ -433,7 +436,7 @@ export class ChannelComponent implements OnInit,OnDestroy{
   has_Finance(){
     this.item=this.items.length;
     for(this.item;this.item>0;this.item--) {
-      if (this.items[this.item-1] == '旅游') {
+      if (this.items[this.item-1] == '财经') {
         return true;
       }
     }
@@ -631,13 +634,40 @@ export class ChannelComponent implements OnInit,OnDestroy{
     }
   }
   /**
-   * 点击触发热点事件
+   * 点击触发美食事件
    * @type {boolean}
    */
 
   food_1(){
     for(let i=0;i<this.items.length;i++){
       if(this.items[i]=='美食'){
+        this.item=i;
+        break;
+      }
+    }
+    this.items.splice(this.item,1);
+    this.lists.splice(this.item,1);
+  }
+
+  has_Local(){
+    this.item=this.items.length;
+    for(this.item;this.item>0;this.item--) {
+      if (this.items[this.item-1] == '本地') {
+        return true;
+      }
+    }
+    if(this.item==0) {
+      return false;
+    }
+  }
+  /**
+   * 点击触发本地事件
+   * @type {boolean}
+   */
+
+  local_1(){
+    for(let i=0;i<this.items.length;i++){
+      if(this.items[i]=='本地'){
         this.item=i;
         break;
       }
@@ -765,5 +795,9 @@ export class ChannelComponent implements OnInit,OnDestroy{
   food_2(){
     this.items.push(this.food);
     this.lists.push('food');
+  }
+  local_2(){
+    this.items.push(this.local);
+    this.lists.push('local');
   }
 }
