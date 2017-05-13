@@ -73,7 +73,7 @@ export class SearchDataComponent implements OnInit,OnDestroy{
     let params = new URLSearchParams();
     params.set('action', 'opensearch');
     params.set('format', 'json');
-    params.set('callback', 'JSONP_CALLBACK');
+    params.set('callback','JSONP_CALLBACK');
     return this.jsonp
       .get(Url, {search: params})
       .map(res=>res.json().data[this.count])

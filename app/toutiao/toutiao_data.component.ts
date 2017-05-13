@@ -97,12 +97,8 @@ export class ToutiaoDataComponent implements OnInit,OnDestroy{
 
     //获取娱乐新闻数据
     if(this.type=='entertainment') {
-      this.toutiaoApiservice.searchEntertainment().map(res => {
-        if (res.json().data[4].article_genre == 'gallery')
-          return res.json().data[4];
-        else if (res.json().data[6].article_genre == 'article')
-          return res.json().data[6];
-      })
+      this.toutiaoApiservice.searchEntertainment().map(res => res.json().data[this.count])
+
         .subscribe(response => (console.log(response), this.article_genre=response.article_genre,this.title = response.title, this.comments = response.comments_count,
           this.source = response.source, this.article_genre = response.article_genre, this.image_list = response.image_list,
           this.datetime = response.datetime, this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,
@@ -112,12 +108,7 @@ export class ToutiaoDataComponent implements OnInit,OnDestroy{
 
     //获取推荐新闻数据
     if(this.type=='all') {
-      this.toutiaoApiservice.searchAll().map(res => {
-          if (res.json().data[4].article_genre == 'gallery')
-            return res.json().data[4];
-          else if (res.json().data[6].article_genre == 'article')
-            return res.json().data[6];
-        })
+      this.toutiaoApiservice.searchAll().map(res => res.json().data[this.count])
         .subscribe(response => (console.log(response), this.article_genre=response.article_genre,this.title = response.title, this.comments = response.comments_count,
           this.source = response.source, this.article_genre = response.article_genre, this.image_list = response.image_list,
           this.datetime = response.datetime, this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,
@@ -127,12 +118,8 @@ export class ToutiaoDataComponent implements OnInit,OnDestroy{
 
     //获取推荐热点数据
     if(this.type=='hot') {
-      this.toutiaoApiservice.searchHot().map(res => {
-          if (res.json().data[4].article_genre == 'gallery')
-            return res.json().data[4];
-          else if (res.json().data[6].article_genre == 'article')
-            return res.json().data[6];
-        })
+      this.toutiaoApiservice.searchHot().map(res =>res.json().data[this.count]
+        )
         .subscribe(response => (console.log(response),this.article_genre=response.article_genre, this.title = response.title, this.comments = response.comments_count,
           this.source = response.source, this.article_genre = response.article_genre, this.image_list = response.image_list,
           this.datetime = response.datetime, this.item_seo_url = response.item_seo_url, this.data = response, this.seo_url = response.seo_url,

@@ -11,7 +11,7 @@ import {subscribeOn} from "rxjs/operator/subscribeOn";
   <div class="header">
     <div class="top">
         <div ><img style="margin-left:15px" src="../../../images/email.png"></div>
-        <div ><span>今日头条</span><img style="margin-top:5px" src="../../../images/refresh.png" onmouseover="this.src='../../../images/refresh_1.png'" onmouseout="this.src='../../../images/refresh.png'"></div>
+        <div ><span>惠惠头条</span><img style="margin-top:5px" src="../../../images/refresh.png" onmouseover="this.src='../../../images/refresh_1.png'" onmouseout="this.src='../../../images/refresh.png'"></div>
         <div style="margin-right:15px"><a [routerLink]="['/search']"><img  src="../../../images/search.png" onmouseover="this.src='../../../images/search_1.png'" onmouseout="this.src='../../../images/search.png'"></a></div>
 </div>
     <div class="nav">
