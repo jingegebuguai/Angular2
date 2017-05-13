@@ -2,7 +2,6 @@ import {Component, OnInit, Injectable, Input, OnDestroy} from '@angular/core';
 import {JsonpModule, Jsonp, URLSearchParams} from "@angular/http";
 import 'rxjs/add/operator/map';
 import {ToutiaoApiService} from "app/toutiaoApi.service";
-import {ActivatedRoute} from "@angular/router";
 @Component({
   selector:'joke_data',
   styleUrls:['joke_data.component.css'],
@@ -26,13 +25,14 @@ export class JokeDataComponent implements OnInit{
   bury_count:number;
   digg_count:number;
   type:string;
-  constructor(private jsonp:Jsonp,private toutiaoApiservice:ToutiaoApiService,private _activatedRoute:ActivatedRoute){}
+  constructor(private jsonp:Jsonp){}
   ngOnInit() {
     let Url = 'http://www.toutiao.com/api/article/feed/?category=essay_joke&as=A115C8457F69B85&cp=585F294B8845EE1';
     let params = new URLSearchParams();
     params.set('action', 'opensearch');
-    params.set('format', 'json');
-    params.set('callback', 'JSONP_CALLBACK');
+    //params.set('format', 'json');
+    //params.set('callback','__ng_jsonp__.__req1.finished');
+    params.set('callback','JSONP_CALLBACK');
     return this.jsonp
       .get(Url, {search: params})
        .map(res => {
