@@ -31,4 +31,13 @@ button{
 .avatar_source{
   display: flex; flex-direction: row;align-items: center;
 }
+.addComment{
+  width:100%;font-size: 25px;font-family: "楷体";height:50px;line-height: 50px;  margin-top:20px;background: whitesmoke;
+}
+span{
+  display: flex;flex-direction: row;justify-content: center;align-items: center;cursor: pointer;
+}
+span:hover{
+  color:orangered;
+}
 

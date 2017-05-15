@@ -17,11 +17,20 @@ import {ActivatedRoute} from "@angular/router";
                 </div>
                 <div class="content" [innerHTML]="content" style="overflow: hidden">{{content}}</div>
             </div>
-            <div *ngFor="let count of counts"><comments [group_id]="group_id" [item_id]="item_id" [count]="count"></comments></div>`,
+            <div *ngFor="let count of counts"><comments [group_id]="group_id" [item_id]="item_id" [count]="count"></comments></div>
+            <!--点击加载刷新新内容-->
+            <div *ngFor="let _count of _counts">
+            <div *ngIf="is_add[_count]==true">
+            <div *ngFor="let count of counts">
+            <comments [group_id]=this.group_id [item_id]="item_id" [count]="count"></comments>
+            </div></div></div>
+            <div class="addComment"><span on-click="addComment()">点击加载...</span></div>`,
   styleUrls:['article.component.css']
 })
 export class ArticleComponent implements OnInit,OnDestroy{
   counts:Array<number>=[0,1,2,3,4,5,6,7,8];
+  is_add:Array<boolean>=[];
+  _counts:Array<number>=[];
   url:string;
   data:any;
   content:string;
@@ -33,6 +42,15 @@ export class ArticleComponent implements OnInit,OnDestroy{
   item_id:number;
   private sub_1:any;
   private sub_2:any;
+  i:number=0;
+  /**
+   * 底部点击加载评论函数
+   */
+  addComment(){
+    this._counts.push(this.i);
+    this.is_add[this.i]=true;
+    this.i=this.i+1;
+  }
   back(){
     window.history.back();
   }

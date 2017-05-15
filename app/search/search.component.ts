@@ -11,13 +11,28 @@ import {Router, ActivatedRoute} from "@angular/router";
             
             <div *ngFor="let count of counts">
             <search_data [count]="count"></search_data>   
-            </div>    `,
+            </div>   
+             
+             <div *ngFor="let _count of _counts">
+            <div *ngIf="is_add[_count]==true">
+            <div *ngFor="let count of counts">
+            <search_data [count]="count"></search_data>
+            </div></div></div>
+            <div class="addNew"><span on-click="addNew()">点击加载...</span></div>`,
   styleUrls: ['search.component.css']
 })
 export class SearchComponent {
   counts: Array<number> = [0, 1, 2, 3, 4, 5, 6, 7];
   value: any;
   sub: any;
+  i:number=0;
+  _counts:Array<number>=[];
+  is_add:Array<boolean>=[];
+  addNew(){
+    this._counts.push(this.i);
+    this.is_add[this.i]=true;
+    this.i+=1;
+  }
   back(){
     window.history.back();
   }
